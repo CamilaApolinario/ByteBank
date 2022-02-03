@@ -43,6 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Funcionarios\FuncionarioAutenticavel.cs" />
+    <Compile Include="ParceiroComercial.cs" />
+    <Compile Include="Sistemas\IAutenticavel.cs" />
     <Compile Include="Cliente.cs" />
     <Compile Include="ContaCorrente.cs" />
     <Compile Include="Funcionarios\Auxiliar.cs" />
@@ -54,6 +57,7 @@
     <Compile Include="GerenciadorBonificacao.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sistemas\SistemaInterno.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

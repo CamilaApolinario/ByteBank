@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _1_ByteBank.Funcionarios
 {
-    public class GerenteDeConta : Funcionario
+    public class GerenteDeConta : FuncionarioAutenticavel
     {
         public GerenteDeConta(string cpf) : base(4000, cpf)
         {
@@ -20,5 +20,6 @@ namespace _1_ByteBank.Funcionarios
         {
             return Salario * 0.25;
         }
+        
     }
 }
