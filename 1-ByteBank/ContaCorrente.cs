@@ -9,26 +9,32 @@ namespace _1_ByteBank
     public class ContaCorrente
     {
         public Cliente Titular { get; set; }
-        private int _agencia;
-        public int Agencia
-        {
-            get
-            {
-                return _agencia;
-            }
-            set
-            {
-                if (value <= 0)
-                {
-                    return;
-                }
-                _agencia = value;
-            } 
-        }
-        public int Numero { get; set; }
-        public static int TotaldeContas { get; private set; }
+        public int Agencia { get; }
+        public int Numero { get; }
 
         private double _saldo = 100;
+        public static int TotalDeContasCriadas { get; private set; }
+        private static int TaxaOperacao { get; set; }
+
+
+        public ContaCorrente(int agencia, int numero)
+        {
+            if(agencia <= 0)
+            {
+                throw new ArgumentException("O argumento agencia deve ser maior que 0.", nameof(agencia));
+            }
+            if(numero <= 0)
+            {
+                throw new ArgumentException("O argumento numero deve ser maior que 0.", nameof(numero));
+            }
+
+            Agencia = agencia;
+            Numero = numero;
+
+            TotalDeContasCriadas++;
+            TaxaOperacao = 30 / TotalDeContasCriadas;
+        }
+
         public double Saldo
         {
             get
@@ -41,29 +47,23 @@ namespace _1_ByteBank
                 {
                     return;
                 }            
-                _saldo = value;
-                    
+                _saldo = value;                   
             }
-
         }
 
-        public ContaCorrente(int agencia, int numero)
+        public void Sacar(double valor)
         {
-            Agencia = agencia;
-            Numero = numero;
-
-            TotaldeContas++;
-        }
-
-        public bool Sacar(double valor)
-        {
-            if (this._saldo < valor)
+            if (valor < 0)
             {
-                return false;
+                throw new ArgumentException("Valor de saque não podde ser negativo", nameof(valor));
+            }
+            if (_saldo < valor)
+            {
+                throw new SaldoInsuficienteException(_saldo, valor);
             }
 
-            this._saldo -= valor;
-            return true;
+            _saldo -= valor;
+            
         }
 
         public void Depositar(double valor)
@@ -71,15 +71,15 @@ namespace _1_ByteBank
             this._saldo += valor;
 
         }
-        public bool Transferir(double valor, ContaCorrente contaDestino)
+        public void Transferir(double valor, ContaCorrente contaDestino)
         {
-            if (this._saldo < valor)
+            if (_saldo < valor)
             {
-                return false;
+                throw new ArgumentException("valor inválido para transferencia ", nameof(valor));
             }
-            this._saldo -= valor;
+            Sacar(valor);
             contaDestino.Depositar(valor);
-            return true;
+            
         }
 
     }

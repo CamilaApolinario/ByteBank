@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Funcionarios\FuncionarioAutenticavel.cs" />
     <Compile Include="ParceiroComercial.cs" />
+    <Compile Include="SaldoInsuficienteException.cs" />
     <Compile Include="Sistemas\IAutenticavel.cs" />
     <Compile Include="Cliente.cs" />
     <Compile Include="ContaCorrente.cs" />

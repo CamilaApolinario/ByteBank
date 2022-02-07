@@ -11,105 +11,147 @@ namespace _1_ByteBank
     {
         static void Main(string[] args)
         {
-            /*ContaCorrente primeiraContaCorrente = new ContaCorrente(865, 865123);
-            ContaCorrente segundaContaCorrente = new ContaCorrente(865, 865321);
 
-            primeiraContaCorrente.Depositar(200);
-            Console.WriteLine("Depósito realizado na primeiraConta, saldo atual R$ " + primeiraContaCorrente.Saldo);
+            try
+            {
+                ContaCorrente conta = new ContaCorrente(564,4566);
+                ContaCorrente conta2 = new ContaCorrente(564, 564789);
 
-            primeiraContaCorrente.Sacar(100);
-            Console.WriteLine("Saque realizado na primeiraConta, saldo atual R$ " + primeiraContaCorrente.Saldo);
 
-            primeiraContaCorrente.Transferir(50, segundaContaCorrente);
-            Console.WriteLine("Você transferiu, para segunda conta seu saldo atual R$ " + primeiraContaCorrente.Saldo);
-            Console.WriteLine();
-            
-            Console.WriteLine("ByteBanK possui " + ContaCorrente.TotaldeContas + " contas.");
-            Console.WriteLine();
+                conta2.Transferir(-10, conta);
 
-            segundaContaCorrente.Depositar(100);
-            Console.WriteLine("Depósito realizado na segundaConta, saldo atual R$ " + segundaContaCorrente.Saldo);
-
-            segundaContaCorrente.Sacar(50);
-            Console.WriteLine("Saque realizado na segundaConta, saldo atual R$ " + segundaContaCorrente.Saldo);
-  
-            segundaContaCorrente.Transferir(100, primeiraContaCorrente);
-            Console.WriteLine("Você transferiu, para primeiraConta seu saldo atual R$ " + segundaContaCorrente.Saldo);
-            
-            Console.WriteLine();
-            Console.WriteLine("ByteBanK possui " + ContaCorrente.TotaldeContas + " contas.");
-            Console.WriteLine();
-
-            ContaCorrente contaCamila = new ContaCorrente(865, 865234);
-            contaCamila.Titular = new Cliente();
-
-            contaCamila.Titular.Nome = "Camila";
-            Console.WriteLine(contaCamila.Titular.Nome);
-            Console.WriteLine("ByteBanK possui " + ContaCorrente.TotaldeContas + " contas.");*/
-
-            CalcularBonificacao();
-            UsarSistema();
+                conta.Depositar(50);
+                Console.WriteLine(conta.Saldo);
+                conta.Sacar(-500);
+                Console.WriteLine(conta.Saldo);
+            }
+            catch (ArgumentException e)
+            {
+                if(e.ParamName == "numero")
+                {
+                }
+                Console.WriteLine("Argumento com problema: " + e.ParamName);
+                Console.WriteLine("Ocorreu uma exceção do tipo ArgumentException");
+                Console.WriteLine(e.Message);
+            }
+            catch(SaldoInsuficienteException e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine("Exceção do tipo SaldoInsuficiente");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
 
             Console.ReadLine();
-            
-
         }
-        public static void UsarSistema()
-        {
-            SistemaInterno sistemaInterno = new SistemaInterno();
+    }
+}
 
-            Diretor roberta = new Diretor("159.753.398-04");
-            roberta.Nome = "Roberta";
-            roberta.Senha = "123";
 
-            GerenteDeConta camila = new GerenteDeConta("326.985.628-89");
-            camila.Nome = "Camila";
-            camila.Senha = "abc";
+        /*  Testar Conta e suas operações e o Total de Contas
+        
+        ContaCorrente primeiraContaCorrente = new ContaCorrente(865, 865123);
+        ContaCorrente segundaContaCorrente = new ContaCorrente(865, 865321);
 
-            ParceiroComercial parceiro = new ParceiroComercial();
-            parceiro.Senha = "123456";
+        primeiraContaCorrente.Depositar(200);
+        Console.WriteLine("Depósito realizado na primeiraConta, saldo atual R$ " + primeiraContaCorrente.Saldo);
 
-            sistemaInterno.Logar(parceiro, "123456");
+        primeiraContaCorrente.Sacar(100);
+        Console.WriteLine("Saque realizado na primeiraConta, saldo atual R$ " + primeiraContaCorrente.Saldo);
 
-            sistemaInterno.Logar(roberta, "123");
-            sistemaInterno.Logar(camila, "abc");
+        primeiraContaCorrente.Transferir(50, segundaContaCorrente);
+        Console.WriteLine("Você transferiu, para segunda conta seu saldo atual R$ " + primeiraContaCorrente.Saldo);
+        Console.WriteLine();
 
+        Console.WriteLine("ByteBanK possui " + ContaCorrente.TotaldeContas + " contas.");
+        Console.WriteLine();
+
+        segundaContaCorrente.Depositar(100);
+        Console.WriteLine("Depósito realizado na segundaConta, saldo atual R$ " + segundaContaCorrente.Saldo);
+
+        segundaContaCorrente.Sacar(50);
+        Console.WriteLine("Saque realizado na segundaConta, saldo atual R$ " + segundaContaCorrente.Saldo);
+
+        segundaContaCorrente.Transferir(100, primeiraContaCorrente);
+        Console.WriteLine("Você transferiu, para primeiraConta seu saldo atual R$ " + segundaContaCorrente.Saldo);
+
+        Console.WriteLine();
+        Console.WriteLine("ByteBanK possui " + ContaCorrente.TotaldeContas + " contas.");
+        Console.WriteLine();
+
+        ContaCorrente contaCamila = new ContaCorrente(865, 865234);
+        contaCamila.Titular = new Cliente();
+
+        contaCamila.Titular.Nome = "Camila";
+        Console.WriteLine(contaCamila.Titular.Nome);
+        Console.WriteLine("ByteBanK possui " + ContaCorrente.TotaldeContas + " contas.");
+
+        CalcularBonificacao();
+        UsarSistema();
+        
+        Console.ReadLine();
         }
+    }
+}*/
 
-        public static void CalcularBonificacao()
-        {
-            GerenciadorBonificacao gerenciadorBonificacao = new GerenciadorBonificacao();
+    
+    /*public static void UsarSistema()
+      {
+        SistemaInterno sistemaInterno = new SistemaInterno();
 
-            Funcionario pedro = new Designer("833.222.048-39");
-            pedro.Nome = "Pedro";
+        Diretor roberta = new Diretor("159.753.398-04");
+        roberta.Nome = "Roberta";
+        roberta.Senha = "123";
 
-            Funcionario roberta = new Diretor("159.753.398-04");
-            roberta.Nome = "Roberta";
+        GerenteDeConta camila = new GerenteDeConta("326.985.628-89");
+        camila.Nome = "Camila";
+        camila.Senha = "abc";
 
-            Funcionario igor = new Auxiliar("981.198.778-53");
-            igor.Nome = "Igor";
+        ParceiroComercial parceiro = new ParceiroComercial();
+        parceiro.Senha = "123456";
 
-            Funcionario camila = new GerenteDeConta("326.985.628-89");
-            camila.Nome = "Camila";
-            
+        sistemaInterno.Logar(parceiro, "123456");
 
-            Desenvolvedor guilherme = new Desenvolvedor("456.175.468-20");
-            guilherme.Nome = "Guilherme";
-
-            gerenciadorBonificacao.Registrar(guilherme);
-            gerenciadorBonificacao.Registrar(pedro);
-            gerenciadorBonificacao.Registrar(roberta);
-            gerenciadorBonificacao.Registrar(igor);
-            gerenciadorBonificacao.Registrar(camila);
-
-            Console.WriteLine("Total de bonificações do mês " +
-                gerenciadorBonificacao.GetTotalBonificacao());
-
-           
-        }
+        sistemaInterno.Logar(roberta, "123");
+        sistemaInterno.Logar(camila, "abc");
 
     }
+
+    public static void CalcularBonificacao()
+    {
+        GerenciadorBonificacao gerenciadorBonificacao = new GerenciadorBonificacao();
+
+        Funcionario pedro = new Designer("833.222.048-39");
+        pedro.Nome = "Pedro";
+
+        Funcionario roberta = new Diretor("159.753.398-04");
+        roberta.Nome = "Roberta";
+
+        Funcionario igor = new Auxiliar("981.198.778-53");
+        igor.Nome = "Igor";
+
+        Funcionario camila = new GerenteDeConta("326.985.628-89");
+        camila.Nome = "Camila";
+
+
+        Desenvolvedor guilherme = new Desenvolvedor("456.175.468-20");
+        guilherme.Nome = "Guilherme";
+
+        gerenciadorBonificacao.Registrar(guilherme);
+        gerenciadorBonificacao.Registrar(pedro);
+        gerenciadorBonificacao.Registrar(roberta);
+        gerenciadorBonificacao.Registrar(igor);
+        gerenciadorBonificacao.Registrar(camila);
+
+
+        Console.WriteLine("Total de bonificações do mês " +
+            gerenciadorBonificacao.GetTotalBonificacao());*/
+
+
+    
        
         
-}
+
 
